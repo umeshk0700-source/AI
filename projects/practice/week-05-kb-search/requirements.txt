@@ -1,0 +1,4 @@
+llmlab @ file://../common
+llmlab[embeddings] @ file://../common
+numpy
+pytest>=8.0

@@ -1,0 +1,3 @@
+llmlab @ file://../common
+numpy
+pytest>=8.0

@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llmlab"
+version = "0.1.0"
+description = "Shared toolkit for the AI-upskill practice labs (real Anthropic + OpenAI clients, cost, tracing, evals)"
+requires-python = ">=3.10"
+dependencies = [
+    "anthropic>=0.40",
+    "openai>=1.40",
+    "python-dotenv>=1.0",
+    "tenacity>=8.2",
+    "numpy",
+]
+
+[project.optional-dependencies]
+embeddings = ["sentence-transformers", "voyageai>=0.2"]
+dev = ["pytest>=8.0"]
+
+[tool.setuptools.packages.find]
+include = ["llmlab*"]

@@ -21,3 +21,14 @@ accelerate>=0.33
 sentence-transformers
 duckdb
 anthropic
+
+# Practice labs (projects/practice/) — real API clients + test tooling
+openai>=1.40
+anthropic>=0.40
+python-dotenv>=1.0
+tenacity>=8.2
+voyageai>=0.2
+pytest>=8.0
+fastapi>=0.110
+httpx>=0.27
+pydantic>=2.5

@@ -1,0 +1,2 @@
+llmlab @ file://../common
+pytest>=8.0

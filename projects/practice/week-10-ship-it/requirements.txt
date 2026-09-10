@@ -1,0 +1,6 @@
+llmlab @ file://../common
+llmlab[embeddings] @ file://../common
+fastapi>=0.110
+httpx>=0.27
+pydantic>=2.5
+pytest>=8.0
