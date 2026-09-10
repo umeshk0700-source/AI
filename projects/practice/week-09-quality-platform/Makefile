@@ -23,7 +23,7 @@ solution:
 	LAB_SRC=solution $(PY) -m pytest -q -m "not live"
 
 live:
-	@echo "This calls real APIs and costs money (cap: $0.20). Ctrl-C to abort."; sleep 2
+	@echo "This calls real APIs and costs money (cap: USD 0.20). Ctrl-C to abort."; sleep 2
 	$(PRESET) LLM_LIVE=1 $(PY) -m pytest -q -m live -s
 
 lab:
