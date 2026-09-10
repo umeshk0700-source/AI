@@ -1,0 +1,9 @@
+# Base requirements (shared across all days)
+numpy>=1.21.0
+matplotlib>=3.5.0
+jupyter>=1.0.0
+ipykernel>=6.0.0
+tiktoken>=0.3.0
+
+# Day 02 specific requirements
+# No additional requirements - using only base libraries

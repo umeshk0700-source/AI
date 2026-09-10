@@ -1,0 +1,11 @@
+# Shared environment for every day's lesson.
+# Install into the uv venv with:  uv pip install -r requirements.txt
+numpy
+matplotlib
+tiktoken
+
+# notebook tooling
+jupyterlab
+ipykernel
+nbconvert
+nbformat

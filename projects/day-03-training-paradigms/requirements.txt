@@ -1,0 +1,10 @@
+# Base requirements (shared across all days)
+numpy>=1.21.0
+matplotlib>=3.5.0
+jupyter>=1.0.0
+ipykernel>=6.0.0
+tiktoken>=0.3.0
+
+# Day 03 specific requirements  
+scikit-learn>=1.0.0  # For simple classification examples
+# No other additional requirements - using base libraries for demonstrations
