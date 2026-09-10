@@ -1,0 +1,8 @@
+# Day 09 — LoRA on Hugging Face
+torch>=2.2
+transformers>=4.44
+peft>=0.12
+datasets>=3.0
+accelerate>=0.33
+matplotlib
+# Colab-only for the QLoRA section: bitsandbytes, trl

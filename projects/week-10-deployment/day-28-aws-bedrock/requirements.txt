@@ -1,0 +1,3 @@
+# Day 28 — AWS Bedrock
+# stdlib only (mock client)
+# real: boto3, anthropic[bedrock]

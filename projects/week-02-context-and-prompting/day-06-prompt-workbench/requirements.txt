@@ -1,0 +1,6 @@
+# Day 06 — Prompt Workbench
+numpy
+matplotlib
+tiktoken
+# optional, for the real model backend:
+# anthropic

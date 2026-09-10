@@ -1,0 +1,5 @@
+# Day 04 — Context Windows
+# All satisfied by the shared root venv; listed here for reference.
+numpy
+matplotlib
+tiktoken

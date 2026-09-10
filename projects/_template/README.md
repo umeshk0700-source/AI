@@ -26,7 +26,7 @@ By the end of the hour you should be able to:
 
 ## Setup
 
-Runs in the shared uv venv at the repo root (see [the root README](../../README.md)):
+Runs in the shared uv venv at the repo root (see [the root README](../../../README.md)):
 
 ```powershell
 .venv\Scripts\activate
@@ -35,7 +35,7 @@ Runs in the shared uv venv at the repo root (see [the root README](../../README.
 ## Run it
 
 ```powershell
-python -m jupyterlab projects\day-NN-<concept>\lesson.ipynb
+python -m jupyterlab projects\week-NN-<week-name>\day-NN-<concept>\lesson.ipynb
 ```
 
 Pinned to the **Python (ai-upskill)** kernel.

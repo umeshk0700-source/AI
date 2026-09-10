@@ -1,0 +1,3 @@
+# Day 10 — Benchmarks
+numpy
+matplotlib

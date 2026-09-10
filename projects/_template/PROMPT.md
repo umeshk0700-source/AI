@@ -14,7 +14,10 @@ Optional source material: <article / video / paper links, or leave blank>
 
 Follow the standing spec below. Do not ask me to restate it.
 
-1. Create projects/day-<NN>-<kebab-case-concept>/ from projects/_template/.
+1. Create projects/week-<WW>-<kebab-week-name>/day-<NN>-<kebab-case-concept>/ from
+   projects/_template/ (make the week folder first if it doesn't exist; day NN lives
+   in week ceil(NN/3) counting from day 01 = week 01). Fix the copied README's
+   relative paths: ../../ -> ../../../, and the launch path to the week-nested one.
 2. Write lesson.ipynb as a self-contained 60-minute guided lesson: markdown
    explanation cells interleaved with runnable code cells, segments timeboxed
    to sum to ~60 min, each concept built from scratch before any library is
@@ -30,8 +33,8 @@ Follow the standing spec below. Do not ask me to restate it.
    NOTES.md (one-page cheat sheet I keep).
 6. Execute the notebook end-to-end with nbconvert so it opens with outputs
    populated, and fix anything that errors.
-7. Add the day as a row in projects/README.md, and end with a short pointer to
-   what would be a good next concept.
+7. Add the day as a row under its week's section in projects/README.md, and end
+   with a short pointer to what would be a good next concept.
 ```
 
 ---

@@ -1,0 +1,4 @@
+# Day 21 — Agent hands-on
+sentence-transformers
+numpy
+# real run: anthropic

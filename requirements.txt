@@ -9,3 +9,15 @@ jupyterlab
 ipykernel
 nbconvert
 nbformat
+
+# Week 3 — fine-tuning (Day 09)
+torch>=2.2
+transformers>=4.44
+peft>=0.12
+datasets>=3.0
+accelerate>=0.33
+
+# Week 5 — embeddings (Day 13+)
+sentence-transformers
+duckdb
+anthropic

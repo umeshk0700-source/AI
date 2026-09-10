@@ -1,0 +1,3 @@
+# Day 26 — Eval harness
+sentence-transformers
+numpy

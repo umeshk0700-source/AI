@@ -1,0 +1,8 @@
+# Day 18 — RAG pipeline
+sentence-transformers
+duckdb
+transformers>=4.44
+torch>=2.2
+numpy
+matplotlib
+# real generation: anthropic

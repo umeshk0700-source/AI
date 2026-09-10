@@ -1,0 +1,54 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: RAG API (Day 30)
+
+Globals:
+  Function:
+    Timeout: 25            # < the 29s API Gateway hard limit
+    MemorySize: 1024       # more memory = more CPU = faster; tune with Lambda Power Tuning
+    Runtime: python3.12
+    Architectures: [arm64] # cheaper + faster for this workload
+    Environment:
+      Variables:
+        MODEL_ID: anthropic.claude-sonnet-4-5-20250929-v1:0
+        VECTOR_DB_SECRET: !Ref VectorDbSecretArn
+    Tracing: Active        # X-Ray
+
+Parameters:
+  VectorDbSecretArn: { Type: String }
+
+Resources:
+  RagApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      Auth:
+        ApiKeyRequired: true          # or a Lambda authorizer / Cognito
+      Throttle: { RateLimit: 50, BurstLimit: 100 }
+      CorsConfiguration:
+        AllowOrigins: ["https://app.example.com"]
+        AllowMethods: [POST, OPTIONS]
+        AllowHeaders: [content-type, x-api-key]
+
+  RagFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: handler.handler
+      CodeUri: ./src
+      ReservedConcurrentExecutions: 100        # cap blast radius / cost
+      ProvisionedConcurrencyConfig:
+        ProvisionedConcurrentExecutions: 2     # keep 2 warm (remove cold starts on the hot path)
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action: ["bedrock:InvokeModel", "bedrock:InvokeModelWithResponseStream"]
+              Resource: "arn:aws:bedrock:*::foundation-model/anthropic.*"
+            - Effect: Allow
+              Action: ["secretsmanager:GetSecretValue"]
+              Resource: !Ref VectorDbSecretArn
+      Events:
+        Ask:
+          Type: HttpApi
+          Properties: { ApiId: !Ref RagApi, Method: POST, Path: /ask }
+
+Outputs:
+  ApiUrl: { Value: !Sub "https://${RagApi}.execute-api.${AWS::Region}.amazonaws.com" }

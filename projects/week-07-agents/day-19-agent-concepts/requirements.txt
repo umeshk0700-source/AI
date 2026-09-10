@@ -1,0 +1,4 @@
+# Day 19 — Agent concepts
+# stdlib only; these are for the exercises:
+numpy
+tiktoken

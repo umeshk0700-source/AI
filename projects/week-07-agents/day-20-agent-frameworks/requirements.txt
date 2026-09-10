@@ -1,0 +1,5 @@
+# Day 20 — Agent frameworks
+sentence-transformers
+numpy
+# real frameworks (reference only, not needed to run):
+# langchain langchain-anthropic langchain-community llama-index

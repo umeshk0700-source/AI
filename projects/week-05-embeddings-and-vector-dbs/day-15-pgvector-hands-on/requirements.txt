@@ -1,0 +1,5 @@
+# Day 15 — pgvector hands-on
+duckdb>=1.1
+sentence-transformers
+numpy
+# on real infra: psycopg[binary], pgvector, boto3

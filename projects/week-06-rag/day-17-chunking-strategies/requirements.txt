@@ -1,0 +1,5 @@
+# Day 17 — Chunking strategies
+sentence-transformers
+numpy
+matplotlib
+tiktoken

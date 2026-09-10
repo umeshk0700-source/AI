@@ -1,0 +1,5 @@
+# Day 05 — Prompting Techniques
+# All satisfied by the shared root venv.
+numpy
+matplotlib
+tiktoken

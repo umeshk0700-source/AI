@@ -1,0 +1,3 @@
+# Day 30 — Deploy RAG API
+# stdlib only to run the notebook.
+# to deploy: aws-sam-cli; lambda src/ needs boto3 (+ your vector DB client)

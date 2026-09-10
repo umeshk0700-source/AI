@@ -1,0 +1,3 @@
+# Day 24 — Streaming
+# stdlib only
+# real: anthropic

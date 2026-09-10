@@ -1,0 +1,4 @@
+# Day 25 — Good evals
+sentence-transformers
+numpy
+matplotlib

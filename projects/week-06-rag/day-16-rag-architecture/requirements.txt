@@ -1,0 +1,6 @@
+# Day 16 — RAG architecture
+sentence-transformers
+transformers>=4.44
+torch>=2.2
+numpy
+matplotlib
