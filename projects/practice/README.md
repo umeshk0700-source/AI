@@ -25,35 +25,45 @@ projects/practice/
   ...
 ```
 
-## Setup (once)
+## Setup (once, from the repo root)
 
 ```bash
-source ../../.venv/bin/activate
-pip install -e common                       # makes `import llmlab` work everywhere
-cp .env.example .env && $EDITOR .env         # add ANTHROPIC_API_KEY, OPENAI_API_KEY
+source .venv/bin/activate
+./scripts/setup-hooks.sh                     # pre-commit: blocks secrets, strips notebook outputs
+pip install -e projects/practice/common       # makes `import llmlab` work everywhere
+cp projects/practice/.env.example projects/practice/.env
+$EDITOR projects/practice/.env                # add ANTHROPIC_API_KEY, OPENAI_API_KEY
 ```
 
 ## Working a lab
 
+Every week has a `Makefile`:
+
 ```bash
-cd week-02-support-triage
-pip install -r requirements.txt
-pytest -q                                    # offline unit tests — should pass on the solution,
-                                             # show failures/todos on your work-in-progress
-LLM_LIVE=1 pytest -q -m live                  # the real-API integration tests (costs ~$0.25)
-jupyter lab lab.ipynb                         # guided walkthrough
+cd projects/practice/week-02-support-triage
+make setup        # install this lab's deps
+make test         # offline unit tests — TODOs + failures on your WIP
+make solution     # the same tests against solution/ (should be all green)
+make live         # real Claude/GPT integration tests — costs a few cents, per .env.preset
+make lab          # open the walkthrough notebook
 ```
 
-Then implement the `TODO`s in `src/`. Re-run `pytest` until green. Compare with `solution/`
-only when stuck.
+Then implement the `TODO`s in `src/`, re-run `make test` until green. `solution/` is the
+reference; `make solution` runs the suite against it.
 
-## Cost control
+## Cost & secret safety (set up by `scripts/setup-hooks.sh`)
 
-- Unit tests never call an API.
-- Live tests default to the cheapest models (`claude-haiku-4-5`, `gpt-4o-mini`) and small
-  fixture sets — a full live run per lab is a few cents, `LAB_USD_CAP=0.25` by default.
-- `CostTracker` raises `BudgetExceeded` if a run crosses the cap. Raise it in `.env` when you
-  want a bigger eval.
+- **Unit tests never call an API.** Live tests are opt-in (`-m live` + `LLM_LIVE=1`).
+- Each week ships a committed **`.env.preset`** — model names + a spend cap tuned for that
+  lab (no secrets). `make live` sources it; override per run:
+  `LAB_USD_CAP=1 ANTHROPIC_MODEL=claude-sonnet-4-5 make live`.
+- `llmlab.CostTracker` raises `BudgetExceeded` the moment a run crosses `LAB_USD_CAP`
+  (default `$0.25`, lower in most presets).
+- Your keys live only in `projects/practice/.env` — **gitignored**.
+- The **pre-commit hook** refuses to commit `.env` files or anything that looks like a key
+  (`sk-ant-…`, `AKIA…`, private-key blocks, …), and strips cell outputs from any
+  `projects/practice/**/*.ipynb` (a live-run notebook embeds real API responses + fixture
+  data — never committed). Lesson notebooks keep their outputs.
 
 ## Lab index
 

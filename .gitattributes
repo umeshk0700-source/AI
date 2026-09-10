@@ -1,0 +1,8 @@
+# The practice WIP notebook (lab.ipynb) is committed WITHOUT cell outputs —
+# running it with LLM_LIVE=1 embeds real API responses (which cost money and may
+# carry fixture data). The nbstripout filter is configured by scripts/setup-hooks.sh.
+projects/practice/**/lab.ipynb filter=nbstripout
+
+# Kept WITH outputs (no secrets, deterministic, valuable as reference):
+#   - projects/week-*/day-*/lesson.ipynb   (the teaching artifact)
+#   - projects/practice/week-01-foundations/solution.ipynb   (pure numpy)

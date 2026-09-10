@@ -12,6 +12,22 @@ invoice text ─▶ Extractor(model).extract() ─▶ Extraction{vendor, invoice
 ModelBench.run({...}) ─▶ per-model metrics ─▶ ModelBench.select() ─▶ SelectionMemo
 ```
 
+## Usage
+
+```bash
+cd projects/practice/week-04-model-selection
+make setup        # install deps (into the shared ../../../.venv)
+make test         # offline unit tests — your work-in-progress: TODOs + failures
+make solution     # the same tests against the reference implementation (all green)
+make live         # real Claude/GPT — needs keys, costs ~$0.15   (preset: .env.preset)
+make lab          # open the walkthrough notebook
+```
+
+**Presets.** `.env.preset` (committed, no secrets) pins the models and the spend cap for this
+lab (gpt-4o-mini vs claude-haiku — swap to gpt-4o / claude-sonnet-4-5 for a sharper comparison). `make live` sources it automatically. Your keys go in `projects/practice/.env`
+(gitignored) — copy `projects/practice/.env.example`. Override a preset per run:
+`ANTHROPIC_MODEL=claude-sonnet-4-5 LAB_USD_CAP=1 make live`.
+
 ## What you implement (`src/bench/`)
 
 | File | TODOs |

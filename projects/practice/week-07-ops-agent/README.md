@@ -12,6 +12,22 @@ goal ─▶ Agent.run() ─▶ loop { llm.chat(tools) -> tool calls -> execute -
 guards: max_steps · repeated-call detection · tool-call budget · human approval for destructive tools
 ```
 
+## Usage
+
+```bash
+cd projects/practice/week-07-ops-agent
+make setup        # install deps (into the shared ../../../.venv)
+make test         # offline unit tests — your work-in-progress: TODOs + failures
+make solution     # the same tests against the reference implementation (all green)
+make live         # real Claude/GPT — needs keys, costs ~$0.05   (preset: .env.preset)
+make lab          # open the walkthrough notebook
+```
+
+**Presets.** `.env.preset` (committed, no secrets) pins the models and the spend cap for this
+lab. `make live` sources it automatically. Your keys go in `projects/practice/.env`
+(gitignored) — copy `projects/practice/.env.example`. Override a preset per run:
+`ANTHROPIC_MODEL=claude-sonnet-4-5 LAB_USD_CAP=1 make live`.
+
 ## What you implement (`src/opsagent/`)
 
 | File | TODOs |

@@ -15,14 +15,13 @@ This lab is two notebooks (not a package, since there's nothing to wire up):
   cell at the bottom that prints `TODO` / `FAIL` / `PASS` per check.
 - `solution.ipynb` — the same notebook, filled in, all green.
 
-## Work it
+## Usage
 
 ```bash
-source ../../../.venv/bin/activate
-jupyter lab lab.ipynb
+cd projects/practice/week-01-foundations
+make lab          # open lab.ipynb, implement the TODOs, watch the scoreboard go green
+make solution     # open the filled reference notebook
 ```
 
-Run top to bottom → all `TODO`. Implement one method, re-run its cell + the scoreboard, repeat
-until `ALL GREEN 🎉`.
+No API keys, no cost — this lab is pure numpy.
 
-Covers Day 01 (tokenization, embeddings) and Day 02 (attention).

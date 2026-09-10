@@ -1,4 +1,43 @@
+# --- python / tooling ---
 __pycache__/
 *.pyc
+*.pyo
 .ipynb_checkpoints/
 .DS_Store
+.pytest_cache/
+*.egg-info/
+.venv/
+build/
+dist/
+
+# --- secrets & credentials (NEVER commit) ---
+.env
+.env.*
+!.env.example
+!.env.preset
+*.pem
+*.key
+*_key
+*_secret
+*.credentials
+credentials.json
+secrets.*
+service-account*.json
+aws.json
+.aws/
+
+# --- things that cost money / leak data if committed ---
+# executed practice notebooks may embed real API responses + fixture data.
+# The pre-commit hook strips outputs on commit; these are backstops.
+projects/practice/**/lab.local.ipynb
+projects/practice/**/*.run.ipynb
+**/trace_dump*.json
+**/eval_run_*.json
+**/*.responses.jsonl
+cost_report*.csv
+.llm_cache/
+
+# --- model / data artifacts ---
+*.gguf
+hf_cache/
+.cache/

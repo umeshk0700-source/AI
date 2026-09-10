@@ -17,6 +17,22 @@ inbound ticket ─▶ TriageService.triage() ─▶ TriageResult
 The model does the reading; **your code owns the business rules** layered on top (SLA math,
 priority escalation for enterprise customers, hard routing for security/legal).
 
+## Usage
+
+```bash
+cd projects/practice/week-02-support-triage
+make setup        # install deps (into the shared ../../../.venv)
+make test         # offline unit tests — your work-in-progress: TODOs + failures
+make solution     # the same tests against the reference implementation (all green)
+make live         # real Claude/GPT — needs keys, costs ~$0.10   (preset: .env.preset)
+make lab          # open the walkthrough notebook
+```
+
+**Presets.** `.env.preset` (committed, no secrets) pins the models and the spend cap for this
+lab. `make live` sources it automatically. Your keys go in `projects/practice/.env`
+(gitignored) — copy `projects/practice/.env.example`. Override a preset per run:
+`ANTHROPIC_MODEL=claude-sonnet-4-5 LAB_USD_CAP=1 make live`.
+
 ## What you implement (`src/triage/`)
 
 | File | TODOs |
@@ -37,13 +53,3 @@ priority escalation for enterprise customers, hard routing for security/legal).
 - Swapping `get_client("anthropic")` ↔ `get_client("openai")` requires **no change** to
   `service.py`.
 
-## Run
-
-```bash
-pip install -r requirements.txt
-pytest -q                       # your WIP: failures + NotImplementedError
-LLM_LIVE=1 pytest -q -m live      # real Claude/GPT, ~$0.03
-jupyter lab lab.ipynb
-```
-
-Covers Day 04 (token budget), Day 05 (zero/few-shot/CoT), Day 06 (bake-off harness).

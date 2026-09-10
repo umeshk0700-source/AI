@@ -16,6 +16,22 @@ You build:
 3. `DatasetAudit` — the pre-flight checks that decide whether a fine-tune is even worth running:
    duplicates, train/test leakage, format drift, label noise.
 
+## Usage
+
+```bash
+cd projects/practice/week-03-domain-adaptation
+make setup        # install deps (into the shared ../../../.venv)
+make test         # offline unit tests — your work-in-progress: TODOs + failures
+make solution     # the same tests against the reference implementation (all green)
+make live         # real Claude/GPT — needs keys, costs ~$0.02   (preset: .env.preset)
+make lab          # open the walkthrough notebook
+```
+
+**Presets.** `.env.preset` (committed, no secrets) pins the models and the spend cap for this
+lab. `make live` sources it automatically. Your keys go in `projects/practice/.env`
+(gitignored) — copy `projects/practice/.env.example`. Override a preset per run:
+`ANTHROPIC_MODEL=claude-sonnet-4-5 LAB_USD_CAP=1 make live`.
+
 ## What you implement (`src/adapt/`)
 
 | File | TODOs |
@@ -34,13 +50,3 @@ You build:
   for the given requirement is `"finetune"` and its projected monthly cost beats the
   per-call few-shot cost at the stated volume.
 
-## Run
-
-```bash
-pip install -r requirements.txt
-pytest -q
-LLM_LIVE=1 pytest -q -m live      # one real Claude call, ~$0.001
-jupyter lab lab.ipynb
-```
-
-Covers Day 07 (prompt vs RAG vs fine-tune), Day 08 (LoRA from scratch), Day 09 (data quality).

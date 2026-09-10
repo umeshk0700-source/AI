@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# Blocks secrets, .env files, and cost/data leakage from being committed.
+# Enable once with:  scripts/setup-hooks.sh   (sets core.hooksPath = .githooks)
+# macOS ships bash 3.2 — keep this POSIX-ish, no mapfile / readarray.
+set -eu
+
+RED=$'\033[31m'; YEL=$'\033[33m'; RST=$'\033[0m'
+fail() { printf '%spre-commit: %s%s\n' "$RED" "$*" "$RST" >&2; exit 1; }
+
+REPO_ROOT=$(git rev-parse --show-toplevel)
+STAGED=$(git diff --cached --name-only --diff-filter=ACM)
+[ -z "$STAGED" ] && exit 0
+
+# 1) never commit a real .env  (allow .env.example / .env.preset)
+printf '%s\n' "$STAGED" | while IFS= read -r f; do
+  base=$(basename "$f")
+  case "$base" in
+    .env|.env.local) echo "BLOCK:$f" ;;
+    .env.example|.env.preset) : ;;
+    .env.*) echo "BLOCK:$f" ;;
+  esac
+done | grep -q '^BLOCK:' && fail "refusing to commit a .env file — it holds credentials (gitignored; use .env.example)."
+
+# 2) scan staged additions for secret-shaped strings
+SECRET_RE='sk-ant-[A-Za-z0-9_-]{20,}|sk-proj-[A-Za-z0-9_-]{20,}|sk-[A-Za-z0-9]{40,}|AKIA[0-9A-Z]{16}|ASIA[0-9A-Z]{16}|-----BEGIN [A-Z ]*PRIVATE KEY-----|xox[baprs]-[0-9A-Za-z-]{10,}|ghp_[A-Za-z0-9]{36}|AIza[0-9A-Za-z_-]{35}'
+HITS=$(git diff --cached -U0 --no-color --diff-filter=ACM | grep '^+' | grep -oE "$SECRET_RE" || true)
+if [ -n "$HITS" ]; then
+  printf '%spre-commit: possible secret(s) in the staged diff:%s\n' "$RED" "$RST" >&2
+  printf '%s\n' "$HITS" | sed 's/\(.\{12\}\).*/\1...(redacted)/' >&2
+  fail "remove it, or if it is a false positive: git commit --no-verify"
+fi
+
+# 3) strip outputs from staged practice notebooks (they can embed real API responses)
+PY=$(command -v python3 || echo "$REPO_ROOT/.venv/bin/python")
+printf '%s\n' "$STAGED" | while IFS= read -r f; do
+  case "$f" in
+    projects/practice/*/lab.ipynb|projects/practice/lab.ipynb)
+      if [ -f "$REPO_ROOT/$f" ] && grep -q '"output_type"' "$REPO_ROOT/$f"; then
+        "$PY" "$REPO_ROOT/scripts/strip_notebook.py" "$REPO_ROOT/$f" >/dev/null
+        git add "$f"
+        printf '%spre-commit: stripped outputs from %s%s\n' "$YEL" "$f" "$RST" >&2
+      fi ;;
+  esac
+done
+
+exit 0
