@@ -32,3 +32,6 @@ pytest>=8.0
 fastapi>=0.110
 httpx>=0.27
 pydantic>=2.5
+
+# Week 11 — MCP (Day 31). Pinned <2: the v1 FastMCP / ClientSession API the lesson uses.
+mcp<2

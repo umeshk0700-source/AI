@@ -79,3 +79,8 @@ reference; `make solution` runs the suite against it.
 | 8 | llm-gateway | Resilient multi-provider gateway: retries, cache, failover, streaming | Claude, GPT |
 | 9 | quality-platform | Eval harness (LLM-as-judge) + tracing + a CI regression gate | Claude judge |
 | 10 | ship-it | Wrap the RAG service as an API: FastAPI, auth, limits, load test | Claude |
+| 11 | platform-ops | Release gate + canary + drift monitor + refresh loop for the RAG service | Claude judge |
+
+**[`capstone/`](capstone/)** — one system spanning weeks 5–10: ingest → vector index → RAG with
+citations → tool-using agent → gateway (cache + failover) → FastAPI (auth + rate limit) → eval
+gate. Same format (typed stubs + `solution/` + offline tests + a live end-to-end).

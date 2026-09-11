@@ -2,10 +2,11 @@
 
 One concept per day, one hour each, learned by building it from scratch rather than reading about it.
 
-- **Lessons** — [`projects/`](projects/): 30 guided notebooks in 10 themed weeks
+- **Lessons** — [`projects/`](projects/): 34 guided notebooks in 11 themed weeks
   (`projects/week-NN-*/day-NN-*/`). Start at
   [week 1](projects/week-01-foundations/day-01-text-to-numbers/). Index:
-  [projects/README.md](projects/README.md).
+  [projects/README.md](projects/README.md). Not sure where to start?
+  [LEARNING_PATH.md](LEARNING_PATH.md) picks a one-week / core / full track.
 - **Practice labs** — [`projects/practice/`](projects/practice/): one corporate-grade build per
   week — typed OO skeleton with TODOs, a pytest suite (offline + opt-in **real Claude/GPT**
   integration tests), and a filled `solution/`. Index:
@@ -61,9 +62,9 @@ requirements.txt           shared dependencies
 scripts/                   setup-hooks.sh, strip_notebook.py
 .githooks/pre-commit       secret + cost-leak guard
 projects/
-  week-01-foundations/ ... week-10-deployment/    30 lesson notebooks
+  week-01-foundations/ ... week-11-mlops-and-mcp/  34 lesson notebooks
   _template/                                      the daily-lesson template + PROMPT.md
   practice/
     common/llmlab/                                shared toolkit (real API clients, cost, tracing)
-    week-01-foundations/ ... week-10-ship-it/      10 labs
+    week-01-foundations/ ... week-11-platform-ops/ 11 labs
 ```

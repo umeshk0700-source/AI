@@ -27,8 +27,11 @@ Follow the standing spec below. Do not ask me to restate it.
    add it to the root requirements.txt and install with
    `python -m uv pip install --python .venv\Scripts\python.exe -r requirements.txt`.
    Pin the notebook to the "ai-upskill" kernel.
-4. End with 5-6 exercises with worked solutions plus a self-check quiz and
-   answer key.
+4. End with 5-6 exercises plus a self-check quiz. Keep ONLY the exercise
+   prompts and the quiz questions in lesson.ipynb, followed by a one-line
+   pointer to solutions/. Put the worked solutions and the quiz answer key in
+   a sibling solutions/solutions.ipynb (same "ai-upskill" kernel) so the
+   answers are not sitting under the exercises.
 5. Write README.md (objectives, agenda, launch command, source links) and
    NOTES.md (one-page cheat sheet I keep).
 6. Execute the notebook end-to-end with nbconvert so it opens with outputs

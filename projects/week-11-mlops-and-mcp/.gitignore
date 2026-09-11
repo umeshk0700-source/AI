@@ -1,0 +1,9 @@
+# Files the lesson notebooks generate at runtime (regenerated on each run).
+day-31-mcp/mini_server.py
+day-31-mcp/ops_server.py
+day-31-mcp/sdk_client.py
+day-31-mcp/agent_demo.py
+day-32-package-and-iac/Dockerfile
+day-32-package-and-iac/.dockerignore
+day-32-package-and-iac/main.tf
+day-33-cicd-and-release/ci.yml

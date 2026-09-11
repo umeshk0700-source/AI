@@ -2,9 +2,13 @@
 
 One concept per day, one hour each, learned by building it from scratch rather than reading about it.
 
-Days are grouped into 10 themed weeks. Every day lives in its own folder with the same four
-files: a `README.md` with the agenda, a `lesson.ipynb` you actually run, a `NOTES.md` cheat
-sheet to keep, and a `requirements.txt`.
+Days are grouped into 11 themed weeks. Every day lives in its own folder with the same files:
+a `README.md` with the agenda, a `lesson.ipynb` you actually run, a `NOTES.md` cheat sheet to
+keep, a `requirements.txt`, and a `solutions/solutions.ipynb` holding the worked exercise
+solutions + the quiz answer key (attempt the exercises before opening it).
+
+New here? Read [../LEARNING_PATH.md](../LEARNING_PATH.md) — it picks a subset for a one-week,
+core, or full track instead of grinding all 34 days in order.
 
 ## How to start a day
 
@@ -92,6 +96,15 @@ into a new chat. Everything else is handled for you.
 | 28 | AWS Bedrock: the converse API, inference profiles, pricing, Guardrails/KB/Agents | [day-28-aws-bedrock](week-10-deployment/day-28-aws-bedrock/) | Done |
 | 29 | Serving & cost: prefill/decode, batching, KV cache, replica sizing, cost levers | [day-29-serving-and-cost](week-10-deployment/day-29-serving-and-cost/) | Done |
 | 30 | Deploy the RAG pipeline: Lambda + API Gateway, cold starts, SAM template, auth | [day-30-deploy-rag-api](week-10-deployment/day-30-deploy-rag-api/) | Done |
+
+### Week 11 — MLOps & MCP · [`week-11-mlops-and-mcp/`](week-11-mlops-and-mcp/)
+
+| Day | Concept | Folder | Status |
+| --- | ------- | ------ | ------ |
+| 31 | MCP: JSON-RPC from scratch, `FastMCP` + `ClientSession`, MCP→Anthropic tools, trust boundaries | [day-31-mcp](week-11-mlops-and-mcp/day-31-mcp/) | Done |
+| 32 | Packaging & IaC: image layers/caching, a declarative plan/apply/drift engine, Terraform, secrets | [day-32-package-and-iac](week-11-mlops-and-mcp/day-32-package-and-iac/) | Done |
+| 33 | CI/CD & eval-gated release: pipeline runner, eval gate vs baseline, GitHub Actions, canary + rollback | [day-33-cicd-and-release](week-11-mlops-and-mcp/day-33-cicd-and-release/) | Done |
+| 34 | Monitoring, drift & the retraining loop: golden signals, PSI/KS, `RefreshTrigger`, the loop closed | [day-34-monitor-and-retrain](week-11-mlops-and-mcp/day-34-monitor-and-retrain/) | Done |
 
 ## Environment
 
